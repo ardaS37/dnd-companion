@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-app: #101014;
+  --c-panel: #17181d;
+  --c-panel-2: #1e2026;
+  --c-line: #2c2e35;
+  --c-fg: #eef0f2;
+  --c-fg-2: #92959e;
+  --c-accent: #7f2323;
+  --c-accent-hover: #98292a;
+  --c-accent-fg: #f5eeee;
+}
+
+:root[data-theme='light'] {
+  --c-app: #f1f0ec;
+  --c-panel: #ffffff;
+  --c-panel-2: #e9e7e1;
+  --c-line: #d2cfc6;
+  --c-fg: #18181a;
+  --c-fg-2: #5c5d63;
+  --c-accent: #7f2323;
+  --c-accent-hover: #631a1a;
+  --c-accent-fg: #f5eeee;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-app text-fg font-ui antialiased;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('/textures/parchment.jpg');
+    background-size: 480px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  :root[data-theme='light'] body::before {
+    opacity: 0.12;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-app;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-line;
+  }
+}
+
+/* dockview theme alignment with the app palette (radius already 0 upstream) */
+.dockview-theme-dark,
+.dockview-theme-light {
+  --dv-group-view-background-color: var(--c-panel);
+  --dv-tabs-and-actions-container-background-color: var(--c-panel-2);
+  --dv-activegroup-visiblepanel-tab-background-color: var(--c-panel);
+  --dv-activegroup-hiddenpanel-tab-background-color: var(--c-panel-2);
+  --dv-inactivegroup-visiblepanel-tab-background-color: var(--c-panel);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: var(--c-panel-2);
+  --dv-tab-divider-color: var(--c-line);
+  --dv-separator-border: var(--c-line);
+  --dv-activegroup-visiblepanel-tab-color: var(--c-fg);
+  --dv-activegroup-hiddenpanel-tab-color: var(--c-fg-2);
+  --dv-inactivegroup-visiblepanel-tab-color: var(--c-fg-2);
+  --dv-inactivegroup-hiddenpanel-tab-color: var(--c-fg-2);
+  --dv-tab-group-chip-border-radius: 0px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-character-sheet,
+  #printable-character-sheet * {
+    visibility: visible;
+  }
+  #printable-character-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #000;
+    background: #fff;
+  }
+}
+
+@keyframes roll-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.roll-enter {
+  animation: roll-in 220ms ease-out;
+}
+
+.dice-box-canvas {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
