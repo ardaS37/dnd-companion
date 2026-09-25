@@ -1,5 +1,7 @@
 # D&D Companion
 
+> Work in progress.
+
 An experimental desktop companion for tabletop fantasy campaigns. It combines a virtual tabletop workspace with character management, a bestiary, spells and equipment references, campaign lore, maps, relationships, combat tools, and 3D dice.
 
 ## Features
@@ -31,4 +33,4 @@ npm run dev
 
 Use `npm run typecheck` for TypeScript checks. A Windows package can be prepared with `npm run build:win`.
 
-This is a private work-in-progress project and is shared for development and backup purposes.
+This is a public work-in-progress project shared for development and feedback.
